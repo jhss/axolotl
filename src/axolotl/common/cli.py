@@ -2,6 +2,8 @@
 shared module for cli specific things
 """
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 import logging
 from dataclasses import dataclass, field
 from typing import Optional

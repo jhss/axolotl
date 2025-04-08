@@ -324,8 +324,9 @@ def replace_compute_loss(
 def replace_create_optimizer(
     medusa_lr_multiplier,
 ):
+    
     # Copy from transformers.Trainer.create_optimizer
-    from transformers.trainer import is_sagemaker_mp_enabled, Trainer, ShardedDDPOption
+    from transformers.trainer import is_sagemaker_mp_enabled, Trainer #, ShardedDDPOption
     def create_optimizer(self):
         """
         Setup the optimizer.
@@ -334,7 +335,7 @@ def replace_create_optimizer(
         Trainer's init through `optimizers`, or subclass and override this method in a subclass.
         """
         opt_model = self.model_wrapped if is_sagemaker_mp_enabled() else self.model
-
+        print("[DEBUG] optimizer: ", self.optimizer)
         if self.optimizer is None:
             decay_parameters = self.get_decay_parameter_names(opt_model)
             # Separately set lr for medusa_head
@@ -363,7 +364,9 @@ def replace_create_optimizer(
 
             optimizer_cls, optimizer_kwargs = Trainer.get_optimizer_cls_and_kwargs(self.args)
 
-            if self.sharded_ddp == ShardedDDPOption.SIMPLE:
+            # 
+            if hasattr(self, "sharded_ddp") and self.sharded_ddp is not None:
+                print("[DEBUG] self.sharded_ddp: ", self.sharded_ddp)
                 self.optimizer = OSS(
                     params=optimizer_grouped_parameters,
                     optim=optimizer_cls,
@@ -371,6 +374,7 @@ def replace_create_optimizer(
                 )
             else:
                 self.optimizer = optimizer_cls(optimizer_grouped_parameters, **optimizer_kwargs)
+                print("[DEBUG] self.optimizer: ", self.optimizer)
                 if optimizer_cls.__name__ == "Adam8bit":
                     import bitsandbytes
 

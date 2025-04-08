@@ -9,11 +9,11 @@ load_in_4bit: false
 strict: false
 
 datasets:
-  - path: ShareGPT_Vicuna_unfiltered/ShareGPT_V4.3_unfiltered_cleaned_split.json
+  - path: /datasets/models/speculative_decoding/ShareGPT_Vicuna_unfiltered/truncated_GPT_5.json
     type: sharegpt
-dataset_prepared_path:
+dataset_prepared_path: /datasets/models/speculative_decoding/
 val_set_size: 0.01
-output_dir: ./vicuna_7b_stage1
+output_dir: /datasets/models/speculative_decoding/vicuna_7b_stage1
 
 sequence_len: 4096
 sample_packing: true
@@ -41,7 +41,7 @@ tf32: false
 gradient_checkpointing: true
 early_stopping_patience:
 resume_from_checkpoint:
-local_rank:
+local_rank: 1
 logging_steps: 1
 xformers_attention:
 flash_attention: true

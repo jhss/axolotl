@@ -2,6 +2,10 @@
 CLI to run training on a model
 """
 import logging
+import os
+os.environ["HF_HOME"] = "/datasets/models"
+os.environ["token"] = "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"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 from pathlib import Path
 
 import fire

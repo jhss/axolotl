@@ -54,7 +54,7 @@ def train(
     # Load the model and tokenizer
     LOG.info("loading model and (optionally) peft_config...")
     model, peft_config = load_model(cfg, tokenizer, inference=cli_args.inference)
-
+    model.generation_config.do_sample = True
     safe_serialization = cfg.save_safetensors is True
 
     if cfg.resume_from_checkpoint is None and cfg.auto_resume_from_checkpoints:
