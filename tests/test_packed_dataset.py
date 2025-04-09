@@ -6,7 +6,7 @@ from pathlib import Path
 from datasets import Dataset, load_dataset
 from transformers import AutoTokenizer
 
-from axolotl.datasets import ConstantLengthDataset, TokenizedPromptDataset
+from axolotl.ax_datasets import ConstantLengthDataset, TokenizedPromptDataset
 from axolotl.prompt_tokenizers import AlpacaPromptTokenizingStrategy
 from axolotl.prompters import AlpacaPrompter
 

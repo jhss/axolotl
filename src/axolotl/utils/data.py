@@ -17,7 +17,7 @@ from huggingface_hub import hf_hub_download
 from transformers import PreTrainedTokenizerBase
 
 from axolotl.common.const import DEFAULT_DATASET_PREPARED_PATH
-from axolotl.datasets import ConstantLengthDataset, TokenizedPromptDataset
+from axolotl.ax_datasets import ConstantLengthDataset, TokenizedPromptDataset
 from axolotl.prompt_strategies import load
 from axolotl.prompt_tokenizers import (
     AlpacaMultipleChoicePromptTokenizingStrategy,

@@ -493,19 +493,19 @@ class HFCausalTrainerBuilder(TrainerBuilderBase):
                 "sample_packing_efficiency"
             ] = self.cfg.sample_packing_eff_est
 
-        if self.cfg.eval_steps:
-            training_arguments_kwargs["evaluation_strategy"] = "steps"
-            training_arguments_kwargs["eval_steps"] = self.cfg.eval_steps
-        elif self.cfg.evaluation_strategy:
-            training_arguments_kwargs[
-                "evaluation_strategy"
-            ] = self.cfg.evaluation_strategy
-        elif self.cfg.val_set_size == 0:
-            # no eval set, so don't eval
-            training_arguments_kwargs["evaluation_strategy"] = "no"
-        else:
-            # we have an eval set, but no steps defined, default to use epoch
-            training_arguments_kwargs["evaluation_strategy"] = "epoch"
+        # if self.cfg.eval_steps:
+        #     training_arguments_kwargs["evaluation_strategy"] = "steps"
+        #     training_arguments_kwargs["eval_steps"] = self.cfg.eval_steps
+        # elif self.cfg.evaluation_strategy:
+        #     training_arguments_kwargs[
+        #         "evaluation_strategy"
+        #     ] = self.cfg.evaluation_strategy
+        # elif self.cfg.val_set_size == 0:
+        #     # no eval set, so don't eval
+        #     training_arguments_kwargs["evaluation_strategy"] = "no"
+        # else:
+        #     # we have an eval set, but no steps defined, default to use epoch
+        #     training_arguments_kwargs["evaluation_strategy"] = "epoch"
 
         if self.cfg.save_steps:
             training_arguments_kwargs["save_strategy"] = "steps"

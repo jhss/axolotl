@@ -53,13 +53,14 @@ def load_tokenizer(cfg):
         tokenizer_kwargs["legacy"] = cfg.tokenizer_legacy
 
     tokenizer_cls = AutoTokenizer
-    if cfg.tokenizer_type:
-        tokenizer_cls = getattr(transformers, cfg.tokenizer_type)
+    # if cfg.tokenizer_type:
+    #     tokenizer_cls = getattr(transformers, cfg.tokenizer_type)
 
     tokenizer_config = cfg.tokenizer_config or cfg.base_model_config
     tokenizer = tokenizer_cls.from_pretrained(
         tokenizer_config,
         trust_remote_code=cfg.trust_remote_code or False,
+        token="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",
         use_fast=use_fast,
         **tokenizer_kwargs,
     )
@@ -333,6 +334,7 @@ def load_model(
             load_in_8bit=cfg.load_in_8bit and cfg.adapter is not None,
             load_in_4bit=cfg.load_in_4bit and cfg.adapter is not None,
             trust_remote_code=cfg.trust_remote_code or False,
+            token="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",
             **model_kwargs,
         )
 
