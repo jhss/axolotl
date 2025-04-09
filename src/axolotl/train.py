@@ -12,7 +12,7 @@ import torch
 import transformers.modelcard
 from datasets import Dataset
 from optimum.bettertransformer import BetterTransformer
-from transformers.deepspeed import is_deepspeed_zero3_enabled
+from transformers.integrations.deepspeed import is_deepspeed_zero3_enabled
 
 from axolotl.common.cli import TrainerCliArgs
 from axolotl.logging_config import configure_logging

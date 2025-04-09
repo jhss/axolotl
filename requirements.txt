@@ -28,4 +28,3 @@ scipy
 scikit-learn
 pynvml
 art
-fschat
